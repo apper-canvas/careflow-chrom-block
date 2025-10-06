@@ -1,0 +1,56 @@
+[
+  {
+    "Id": 1,
+    "name": "Dr. William Chen",
+    "specialization": "Cardiologist",
+    "department": "Cardiology",
+    "phone": "+1 (555) 111-2222",
+    "email": "w.chen@careflow.com",
+    "availableSlots": ["09:00 AM", "10:00 AM", "11:00 AM", "02:00 PM", "03:00 PM", "04:00 PM"]
+  },
+  {
+    "Id": 2,
+    "name": "Dr. Amanda Rodriguez",
+    "specialization": "General Physician",
+    "department": "General Medicine",
+    "phone": "+1 (555) 222-3333",
+    "email": "a.rodriguez@careflow.com",
+    "availableSlots": ["08:00 AM", "09:00 AM", "10:00 AM", "11:00 AM", "01:00 PM", "02:00 PM"]
+  },
+  {
+    "Id": 3,
+    "name": "Dr. James Patel",
+    "specialization": "Endocrinologist",
+    "department": "Endocrinology",
+    "phone": "+1 (555) 333-4444",
+    "email": "j.patel@careflow.com",
+    "availableSlots": ["09:00 AM", "10:30 AM", "11:30 AM", "02:00 PM", "03:30 PM"]
+  },
+  {
+    "Id": 4,
+    "name": "Dr. Maria Thompson",
+    "specialization": "Obstetrician",
+    "department": "Obstetrics",
+    "phone": "+1 (555) 444-5555",
+    "email": "m.thompson@careflow.com",
+    "availableSlots": ["08:30 AM", "10:00 AM", "11:30 AM", "01:30 PM", "03:00 PM"]
+  },
+  {
+    "Id": 5,
+    "name": "Dr. Richard Lee",
+    "specialization": "Pulmonologist",
+    "department": "Pulmonology",
+    "phone": "+1 (555) 555-6666",
+    "email": "r.lee@careflow.com",
+    "availableSlots": ["09:00 AM", "10:00 AM", "02:00 PM", "03:00 PM", "04:00 PM"]
+  },
+  {
+    "Id": 6,
+    "name": "Dr. Susan Kim",
+    "specialization": "Orthopedic Surgeon",
+    "department": "Orthopedics",
+    "phone": "+1 (555) 666-7777",
+    "email": "s.kim@careflow.com",
+    "availableSlots": ["08:00 AM", "09:30 AM", "11:00 AM", "01:00 PM", "02:30 PM"]
+  }
+]

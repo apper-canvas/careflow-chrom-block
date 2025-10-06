@@ -1,0 +1,112 @@
+[
+  {
+    "Id": 1,
+    "patientId": 1,
+    "doctorId": 1,
+    "department": "Cardiology",
+    "date": "2024-01-25",
+    "timeSlot": "09:00 AM",
+    "status": "Scheduled",
+    "reason": "Regular cardiac checkup",
+    "notes": "Patient reports occasional chest discomfort"
+  },
+  {
+    "Id": 2,
+    "patientId": 2,
+    "doctorId": 4,
+    "department": "Obstetrics",
+    "date": "2024-01-25",
+    "timeSlot": "10:30 AM",
+    "status": "Scheduled",
+    "reason": "Prenatal checkup - 28 weeks",
+    "notes": "Regular prenatal examination"
+  },
+  {
+    "Id": 3,
+    "patientId": 3,
+    "doctorId": 3,
+    "department": "Endocrinology",
+    "date": "2024-01-25",
+    "timeSlot": "11:00 AM",
+    "status": "Scheduled",
+    "reason": "Diabetes management review",
+    "notes": "Review blood sugar logs and adjust medication"
+  },
+  {
+    "Id": 4,
+    "patientId": 4,
+    "doctorId": 5,
+    "department": "Pulmonology",
+    "date": "2024-01-25",
+    "timeSlot": "02:00 PM",
+    "status": "Scheduled",
+    "reason": "Asthma follow-up",
+    "notes": "Evaluate current inhaler effectiveness"
+  },
+  {
+    "Id": 5,
+    "patientId": 5,
+    "doctorId": 1,
+    "department": "Cardiology",
+    "date": "2024-01-25",
+    "timeSlot": "03:30 PM",
+    "status": "Scheduled",
+    "reason": "Post-cardiac rehab evaluation",
+    "notes": "Assess progress in rehabilitation program"
+  },
+  {
+    "Id": 6,
+    "patientId": 1,
+    "doctorId": 1,
+    "department": "Cardiology",
+    "date": "2024-01-18",
+    "timeSlot": "09:00 AM",
+    "status": "Completed",
+    "reason": "Follow-up consultation",
+    "notes": "Patient doing well, continue current medication"
+  },
+  {
+    "Id": 7,
+    "patientId": 6,
+    "doctorId": 2,
+    "department": "General Medicine",
+    "date": "2024-01-24",
+    "timeSlot": "10:00 AM",
+    "status": "Completed",
+    "reason": "Annual physical examination",
+    "notes": "All vitals normal, cleared for another year"
+  },
+  {
+    "Id": 8,
+    "patientId": 7,
+    "doctorId": 6,
+    "department": "Orthopedics",
+    "date": "2024-01-26",
+    "timeSlot": "09:30 AM",
+    "status": "Scheduled",
+    "reason": "Physical therapy assessment",
+    "notes": "Review recovery progress from sports injury"
+  },
+  {
+    "Id": 9,
+    "patientId": 8,
+    "doctorId": 3,
+    "department": "Endocrinology",
+    "date": "2024-01-26",
+    "timeSlot": "11:00 AM",
+    "status": "Scheduled",
+    "reason": "Thyroid function review",
+    "notes": "Check recent lab results and adjust medication"
+  },
+  {
+    "Id": 10,
+    "patientId": 3,
+    "doctorId": 3,
+    "department": "Endocrinology",
+    "date": "2024-01-20",
+    "timeSlot": "02:00 PM",
+    "status": "Cancelled",
+    "reason": "Routine diabetes checkup",
+    "notes": "Patient requested cancellation due to schedule conflict"
+  }
+]

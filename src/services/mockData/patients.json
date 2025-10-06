@@ -1,0 +1,170 @@
+[
+  {
+    "Id": 1,
+    "firstName": "John",
+    "lastName": "Smith",
+    "dateOfBirth": "1985-03-15",
+    "gender": "Male",
+    "phone": "+1 (555) 123-4567",
+    "email": "john.smith@email.com",
+    "address": "123 Main St, Springfield, IL 62701",
+    "bloodGroup": "A+",
+    "allergies": ["Penicillin", "Peanuts"],
+    "emergencyContact": {
+      "name": "Jane Smith",
+      "relationship": "Wife",
+      "phone": "+1 (555) 123-4568"
+    },
+    "medicalHistory": "Hypertension diagnosed in 2015, regular checkups required.",
+    "currentDepartment": "Cardiology",
+    "admissionDate": "2024-01-15",
+    "status": "Active"
+  },
+  {
+    "Id": 2,
+    "firstName": "Sarah",
+    "lastName": "Johnson",
+    "dateOfBirth": "1992-07-22",
+    "gender": "Female",
+    "phone": "+1 (555) 234-5678",
+    "email": "sarah.j@email.com",
+    "address": "456 Oak Ave, Chicago, IL 60601",
+    "bloodGroup": "O-",
+    "allergies": ["Latex"],
+    "emergencyContact": {
+      "name": "Michael Johnson",
+      "relationship": "Husband",
+      "phone": "+1 (555) 234-5679"
+    },
+    "medicalHistory": "No major medical conditions. Regular prenatal care.",
+    "currentDepartment": "Obstetrics",
+    "admissionDate": "2024-01-20",
+    "status": "Active"
+  },
+  {
+    "Id": 3,
+    "firstName": "Robert",
+    "lastName": "Williams",
+    "dateOfBirth": "1978-11-10",
+    "gender": "Male",
+    "phone": "+1 (555) 345-6789",
+    "email": "r.williams@email.com",
+    "address": "789 Pine Rd, Boston, MA 02101",
+    "bloodGroup": "B+",
+    "allergies": [],
+    "emergencyContact": {
+      "name": "Linda Williams",
+      "relationship": "Sister",
+      "phone": "+1 (555) 345-6790"
+    },
+    "medicalHistory": "Type 2 Diabetes, managed with medication since 2018.",
+    "currentDepartment": "Endocrinology",
+    "admissionDate": "2024-01-10",
+    "status": "Active"
+  },
+  {
+    "Id": 4,
+    "firstName": "Emily",
+    "lastName": "Davis",
+    "dateOfBirth": "2000-05-18",
+    "gender": "Female",
+    "phone": "+1 (555) 456-7890",
+    "email": "emily.davis@email.com",
+    "address": "321 Elm St, Portland, OR 97201",
+    "bloodGroup": "AB+",
+    "allergies": ["Aspirin"],
+    "emergencyContact": {
+      "name": "Thomas Davis",
+      "relationship": "Father",
+      "phone": "+1 (555) 456-7891"
+    },
+    "medicalHistory": "Asthma, uses inhaler as needed.",
+    "currentDepartment": "Pulmonology",
+    "admissionDate": "2024-01-22",
+    "status": "Active"
+  },
+  {
+    "Id": 5,
+    "firstName": "Michael",
+    "lastName": "Brown",
+    "dateOfBirth": "1965-09-30",
+    "gender": "Male",
+    "phone": "+1 (555) 567-8901",
+    "email": "m.brown@email.com",
+    "address": "654 Maple Dr, Seattle, WA 98101",
+    "bloodGroup": "O+",
+    "allergies": ["Sulfa drugs"],
+    "emergencyContact": {
+      "name": "Patricia Brown",
+      "relationship": "Wife",
+      "phone": "+1 (555) 567-8902"
+    },
+    "medicalHistory": "Previous heart attack in 2020, on cardiac rehabilitation program.",
+    "currentDepartment": "Cardiology",
+    "admissionDate": "2024-01-05",
+    "status": "Active"
+  },
+  {
+    "Id": 6,
+    "firstName": "Jennifer",
+    "lastName": "Martinez",
+    "dateOfBirth": "1988-12-25",
+    "gender": "Female",
+    "phone": "+1 (555) 678-9012",
+    "email": "j.martinez@email.com",
+    "address": "987 Birch Ln, Miami, FL 33101",
+    "bloodGroup": "A-",
+    "allergies": [],
+    "emergencyContact": {
+      "name": "Carlos Martinez",
+      "relationship": "Brother",
+      "phone": "+1 (555) 678-9013"
+    },
+    "medicalHistory": "Healthy, routine annual checkups.",
+    "currentDepartment": "General Medicine",
+    "admissionDate": "2024-01-18",
+    "status": "Active"
+  },
+  {
+    "Id": 7,
+    "firstName": "David",
+    "lastName": "Garcia",
+    "dateOfBirth": "1995-04-08",
+    "gender": "Male",
+    "phone": "+1 (555) 789-0123",
+    "email": "david.g@email.com",
+    "address": "159 Cedar St, Denver, CO 80201",
+    "bloodGroup": "B-",
+    "allergies": ["Morphine"],
+    "emergencyContact": {
+      "name": "Maria Garcia",
+      "relationship": "Mother",
+      "phone": "+1 (555) 789-0124"
+    },
+    "medicalHistory": "Sports injury recovery, physical therapy ongoing.",
+    "currentDepartment": "Orthopedics",
+    "admissionDate": "2024-01-12",
+    "status": "Active"
+  },
+  {
+    "Id": 8,
+    "firstName": "Lisa",
+    "lastName": "Anderson",
+    "dateOfBirth": "1982-08-14",
+    "gender": "Female",
+    "phone": "+1 (555) 890-1234",
+    "email": "lisa.anderson@email.com",
+    "address": "753 Walnut Ave, Austin, TX 78701",
+    "bloodGroup": "AB-",
+    "allergies": ["Iodine"],
+    "emergencyContact": {
+      "name": "James Anderson",
+      "relationship": "Husband",
+      "phone": "+1 (555) 890-1235"
+    },
+    "medicalHistory": "Thyroid disorder, taking daily medication.",
+    "currentDepartment": "Endocrinology",
+    "admissionDate": "2024-01-08",
+    "status": "Active"
+  }
+]
