@@ -5,32 +5,38 @@ import { toast } from "react-toastify";
 import Card from "@/components/atoms/Card";
 import Button from "@/components/atoms/Button";
 import Badge from "@/components/atoms/Badge";
+import PrescriptionFormModal from "@/components/organisms/PrescriptionFormModal";
 import ApperIcon from "@/components/ApperIcon";
 import Loading from "@/components/ui/Loading";
 import Error from "@/components/ui/Error";
 import patientService from "@/services/api/patientService";
 import appointmentService from "@/services/api/appointmentService";
-import { format } from "date-fns";
+import prescriptionService from "@/services/api/prescriptionService";
+import { format, isWithinInterval, addDays } from "date-fns";
 
 const PatientDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [patient, setPatient] = useState(null);
   const [appointments, setAppointments] = useState([]);
-  const [loading, setLoading] = useState(true);
+const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [activeTab, setActiveTab] = useState("info");
-
-  const loadPatientData = async () => {
+  const [prescriptions, setPrescriptions] = useState([]);
+  const [showPrescriptionModal, setShowPrescriptionModal] = useState(false);
+  const [editingPrescription, setEditingPrescription] = useState(null);
+const loadPatientData = async () => {
     try {
       setLoading(true);
       setError("");
-      const [patientData, appointmentsData] = await Promise.all([
+      const [patientData, appointmentsData, prescriptionsData] = await Promise.all([
         patientService.getById(id),
-        appointmentService.getByPatientId(id)
+        appointmentService.getByPatientId(id),
+        prescriptionService.getByPatientId(id)
       ]);
       setPatient(patientData);
       setAppointments(appointmentsData);
+      setPrescriptions(prescriptionsData);
     } catch (err) {
       setError(err.message || "Failed to load patient details");
     } finally {
@@ -41,16 +47,50 @@ const PatientDetail = () => {
   useEffect(() => {
     loadPatientData();
   }, [id]);
-
   if (loading) return <Loading rows={8} />;
   if (error) return <Error message={error} onRetry={loadPatientData} />;
   if (!patient) return <Error message="Patient not found" />;
 
-  const tabs = [
+const tabs = [
     { id: "info", label: "Patient Information", icon: "User" },
     { id: "appointments", label: "Appointments", icon: "Calendar" },
+    { id: "prescriptions", label: "Prescriptions", icon: "Pill" },
     { id: "history", label: "Medical History", icon: "FileText" }
   ];
+
+  const handleDeletePrescription = async (prescriptionId) => {
+    if (!window.confirm("Are you sure you want to delete this prescription?")) {
+      return;
+    }
+
+    try {
+      await prescriptionService.delete(prescriptionId);
+      setPrescriptions((prev) => prev.filter((p) => p.Id !== prescriptionId));
+      toast.success("Prescription deleted successfully");
+    } catch (error) {
+      toast.error(error.message || "Failed to delete prescription");
+    }
+  };
+
+  const handleEditPrescription = (prescription) => {
+    setEditingPrescription(prescription);
+    setShowPrescriptionModal(true);
+  };
+
+  const handlePrescriptionSuccess = () => {
+    loadPatientData();
+  };
+
+  const isRefillDueSoon = (refillDate) => {
+    try {
+      const refill = new Date(refillDate);
+      const today = new Date();
+      const sevenDaysFromNow = addDays(today, 7);
+      return isWithinInterval(refill, { start: today, end: sevenDaysFromNow });
+    } catch {
+      return false;
+    }
+  };
 
   const getStatusBadge = (status) => {
     const statusMap = {
@@ -242,8 +282,152 @@ const PatientDetail = () => {
               </div>
             </div>
           </motion.div>
+)}
+
+        {activeTab === "prescriptions" && (
+          <div className="space-y-4">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-lg font-semibold text-gray-900">
+                Active Prescriptions
+              </h3>
+              <Button
+                onClick={() => {
+                  setEditingPrescription(null);
+                  setShowPrescriptionModal(true);
+                }}
+              >
+                <ApperIcon name="Plus" size={20} className="mr-2" />
+                Add Prescription
+              </Button>
+            </div>
+
+            {prescriptions.length === 0 ? (
+              <div className="text-center py-12">
+                <div className="bg-gray-50 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                  <ApperIcon name="Pill" size={32} className="text-gray-400" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  No Prescriptions
+                </h3>
+                <p className="text-gray-600 mb-4">
+                  This patient has no active prescriptions
+                </p>
+                <Button
+                  onClick={() => {
+                    setEditingPrescription(null);
+                    setShowPrescriptionModal(true);
+                  }}
+                >
+                  <ApperIcon name="Plus" size={20} className="mr-2" />
+                  Add First Prescription
+                </Button>
+              </div>
+            ) : (
+              <div className="grid gap-4">
+                {prescriptions.map((prescription) => (
+                  <div
+                    key={prescription.Id}
+                    className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow"
+                  >
+                    <div className="flex justify-between items-start mb-3">
+                      <div className="flex-1">
+                        <div className="flex items-center space-x-3 mb-2">
+                          <h4 className="text-lg font-semibold text-gray-900">
+                            {prescription.medicationName}
+                          </h4>
+                          {isRefillDueSoon(prescription.refillDate) && (
+                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800">
+                              <ApperIcon
+                                name="AlertCircle"
+                                size={14}
+                                className="mr-1"
+                              />
+                              Refill Due Soon
+                            </span>
+                          )}
+                        </div>
+                        <div className="grid grid-cols-2 gap-4 text-sm">
+                          <div>
+                            <span className="text-gray-600">Dosage:</span>
+                            <span className="ml-2 font-medium text-gray-900">
+                              {prescription.dosage}
+                            </span>
+                          </div>
+                          <div>
+                            <span className="text-gray-600">Frequency:</span>
+                            <span className="ml-2 font-medium text-gray-900">
+                              {prescription.frequency}
+                            </span>
+                          </div>
+                          <div>
+                            <span className="text-gray-600">Quantity:</span>
+                            <span className="ml-2 font-medium text-gray-900">
+                              {prescription.quantity}
+                            </span>
+                          </div>
+                          <div>
+                            <span className="text-gray-600">Refill Date:</span>
+                            <span className="ml-2 font-medium text-gray-900">
+                              {format(
+                                new Date(prescription.refillDate),
+                                "MMM d, yyyy"
+                              )}
+                            </span>
+                          </div>
+                        </div>
+                        <div className="mt-3 pt-3 border-t border-gray-100">
+                          <div className="text-sm mb-2">
+                            <span className="text-gray-600">Prescribed by:</span>
+                            <span className="ml-2 font-medium text-gray-900">
+                              {prescription.prescribingDoctor}
+                            </span>
+                          </div>
+                          {prescription.notes && (
+                            <div className="text-sm">
+                              <span className="text-gray-600">Notes:</span>
+                              <p className="mt-1 text-gray-700">
+                                {prescription.notes}
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                      <div className="flex space-x-2 ml-4">
+                        <button
+                          onClick={() => handleEditPrescription(prescription)}
+                          className="p-2 text-primary-600 hover:bg-primary-50 rounded-lg transition-colors"
+                          title="Edit prescription"
+                        >
+                          <ApperIcon name="Edit" size={18} />
+                        </button>
+                        <button
+                          onClick={() => handleDeletePrescription(prescription.Id)}
+                          className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                          title="Delete prescription"
+                        >
+                          <ApperIcon name="Trash2" size={18} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         )}
       </Card>
+
+      {showPrescriptionModal && (
+        <PrescriptionFormModal
+          patientId={id}
+          prescription={editingPrescription}
+          onClose={() => {
+            setShowPrescriptionModal(false);
+            setEditingPrescription(null);
+          }}
+          onSuccess={handlePrescriptionSuccess}
+        />
+      )}
     </div>
   );
 };
