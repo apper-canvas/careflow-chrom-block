@@ -16,7 +16,7 @@ const Layout = () => {
         <Header onMenuClick={() => setIsMobileMenuOpen(true)} />
         
         <main className="flex-1 p-4 lg:p-8">
-          <Outlet />
+<Outlet context={{ isMobileMenuOpen, setIsMobileMenuOpen }} />
         </main>
       </div>
     </div>

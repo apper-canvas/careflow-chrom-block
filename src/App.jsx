@@ -1,27 +1,50 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import Layout from "@/components/organisms/Layout";
+import React from "react";
 import Dashboard from "@/components/pages/Dashboard";
-import Patients from "@/components/pages/Patients";
-import PatientDetail from "@/components/pages/PatientDetail";
 import Appointments from "@/components/pages/Appointments";
-import Departments from "@/components/pages/Departments";
 import Reports from "@/components/pages/Reports";
+import Patients from "@/components/pages/Patients";
+import Departments from "@/components/pages/Departments";
+import PatientDetail from "@/components/pages/PatientDetail";
+import Layout from "@/components/organisms/Layout";
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      {
+        index: true,
+        element: <Dashboard />,
+      },
+      {
+        path: "appointments",
+        element: <Appointments />,
+      },
+      {
+        path: "reports",
+        element: <Reports />,
+      },
+      {
+        path: "patients",
+        element: <Patients />,
+      },
+      {
+        path: "patients/:id",
+        element: <PatientDetail />,
+      },
+      {
+        path: "departments",
+        element: <Departments />,
+      },
+    ],
+  },
+]);
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Navigate to="/dashboard" replace />} />
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="patients" element={<Patients />} />
-          <Route path="patients/:id" element={<PatientDetail />} />
-          <Route path="appointments" element={<Appointments />} />
-          <Route path="departments" element={<Departments />} />
-          <Route path="reports" element={<Reports />} />
-        </Route>
-      </Routes>
+    <>
+      <RouterProvider router={router} />
       <ToastContainer
         position="top-right"
         autoClose={3000}
@@ -34,7 +57,7 @@ function App() {
         pauseOnHover
         theme="light"
       />
-    </BrowserRouter>
+    </>
   );
 }
 
